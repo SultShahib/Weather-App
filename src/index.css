@@ -2,9 +2,6 @@
   font-size: 62.5%;
   box-sizing: border-box;
   margin: 0;
-  background-image: url("./images/weather-back.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 body {
@@ -14,6 +11,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./images/weather-back.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 code {

@@ -7,9 +7,16 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./card.css";
 
-export default function MediaCard({ get }) {
+export default function MediaCard({
+  setGetReal,
+  state,
+  tempInC,
+  tempInF,
+  humidity,
+  wind,
+}) {
   const getReal = () => {
-    get(true);
+    setGetReal(true);
   };
 
   return (
@@ -23,18 +30,25 @@ export default function MediaCard({ get }) {
       /> */}
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            Current-State: {state}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            Temperature(f): {tempInF} || Temperature: {tempInC}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Humidity: {humidity}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Wind: {wind}
           </Typography>
         </CardContent>
         <CardActions>
           <Button size="small" onClick={getReal}>
-            Get api
+            Get Current Weather
           </Button>
-          <Button size="small">Learn More</Button>
+          <Button size="small" onClick={getReal}>
+            Get Forecast Weather
+          </Button>
         </CardActions>
       </Card>
     </>
