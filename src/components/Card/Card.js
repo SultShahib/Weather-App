@@ -9,7 +9,7 @@ import "./card.css";
 
 export default function MediaCard({
   setGetReal,
-  state,
+  condition,
   tempInC,
   tempInF,
   humidity,
@@ -30,7 +30,7 @@ export default function MediaCard({
       /> */}
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Current-State: {state}
+            Current-State: {condition}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Temperature(f): {tempInF} || Temperature: {tempInC}
