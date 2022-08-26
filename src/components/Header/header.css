@@ -9,6 +9,35 @@
 
 .container {
   display: flex;
-
   max-width: 70rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container label {
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding-right: 1.3rem;
+}
+
+.search-container input {
+  border-radius: 1rem;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.search-container button {
+  border: none;
+  border-radius: 1rem;
+  margin-left: 1.3rem;
+  font-size: 1.5rem;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 7rem;
+  font-size: 40rem;
 }

@@ -43,11 +43,15 @@ const Realtime = () => {
     <>
       <div className="container">
         {/* <BasicTextFields input={getInput} /> */}
-        <form onSubmit={getCities}>
-          <label htmlFor="user-input">Search for cities weather</label>
+        <form onSubmit={getCities} className="search-container">
+          <label className="label_cities" htmlFor="user-input">
+            Search for cities weather:
+          </label>
           <input id="user-input" ref={getRef} />
           <button>Search weather</button>
         </form>
+      </div>
+      <div className="card-container">
         {weatherData && (
           <MediaCard
             condition={weatherData.current.condition.text}

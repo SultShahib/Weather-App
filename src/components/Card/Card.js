@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material";
 import "./card.css";
 
 export default function MediaCard({
@@ -19,38 +20,75 @@ export default function MediaCard({
     setGetReal(true);
   };
 
+  const theme = createTheme({
+    typography: {
+      // In Chinese and Japanese the characters are usually larger,
+      // so a smaller fontsize may be appropriate.
+      fontSize: 2,
+    },
+  });
+
+  theme.typography.h3 = {
+    fontSize: "2rem",
+    "@media (min-width:600px)": {
+      fontSize: "1.5rem",
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "2.4rem",
+    },
+  };
+
+  theme.typography.h4 = {
+    fontSize: "1.5rem",
+  };
+
   return (
     <>
-      <Card sx={{ width: "100%" }}>
-        {/* <CardMedia
+      <ThemeProvider theme={theme}>
+        <Card
+          className="card"
+          sx={{
+            width: "50%",
+            fontSize: "20rem",
+          }}
+        >
+          {/* <CardMedia
         component="img"
         height="140"
         image="/static/images/cards/contemplative-reptile.jpg"
         alt="green iguana"
       /> */}
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Current-State: {condition}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Temperature(f): {tempInF} || Temperature: {tempInC}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Humidity: {humidity}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Wind: {wind}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small" onClick={getReal}>
-            Get Current Weather
-          </Button>
-          <Button size="small" onClick={getReal}>
-            Get Forecast Weather
-          </Button>
-        </CardActions>
-      </Card>
+          <CardContent
+            sx={{
+              width: "50%",
+              fontSize: "20rem",
+            }}
+          >
+            <Typography gutterBottom variant="h3" component="div">
+              Current-State: {condition}
+            </Typography>
+            <Typography variant="h4" color="text.secondary">
+              Temperature(f): {tempInF} || Temperature: {tempInC}
+            </Typography>
+            <Typography variant="h4" color="text.secondary">
+              Humidity: {humidity}
+            </Typography>
+            <Typography variant="h4" color="text.secondary">
+              Wind: {wind}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Typography variant="h4" color="text.secondary">
+              <Button variant="h4" size="small" onClick={getReal}>
+                Get Current Weather
+              </Button>
+            </Typography>
+            <Typography variant="h4" color="text.secondary">
+              <Button variant="h4" size="small" onClick={getReal} />
+            </Typography>
+          </CardActions>
+        </Card>
+      </ThemeProvider>
     </>
   );
 }
