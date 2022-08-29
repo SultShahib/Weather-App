@@ -41,3 +41,9 @@
   margin: 7rem;
   font-size: 40rem;
 }
+
+.card-Button {
+  border-radius: 2rem;
+  border: none;
+  background-color: rgb(25, 225, 225);
+}

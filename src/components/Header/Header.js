@@ -1,33 +1,32 @@
 import { useState, useRef } from "react";
 import { API, KEY } from "../../App";
-import axios from "axios";
-import { useEffect } from "react";
 import "./header.css";
 import MediaCard from "../Card/Card";
-import BasicTextFields from "../Input-Field/Input";
+import useWeather from "../../Custom-Hooks/useWeather";
 
 const Realtime = () => {
   const [getReal, setGetReal] = useState(false);
-  const [weatherData, setWeatherData] = useState("");
   const getRef = useRef();
   const [userSearch, setUserSearch] = useState("");
+  const fetchWeatherData = useWeather(API, KEY, userSearch, "current");
+  console.log(fetchWeatherData);
+  console.log(userSearch);
 
-  const getRealTimeWeather = async (api, key) => {
-    try {
-      const { data } = await axios.get(
-        `${api}/current.json?key=${key}&q=${userSearch}`
-      );
+  // const getRealTimeWeather = async (api, key) => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `${api}/current.json?key=${key}&q=${userSearch}`
+  //     );
 
-      console.log(data);
-      setWeatherData(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     console.log(data);
+  //     setWeatherData(data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  // useEffect(() => {}, [getReal, userSearch]);
 
-  useEffect(() => {
-    getRealTimeWeather(API, KEY);
-  }, [getReal, userSearch]);
+  // const data = useWeather(API, KEY, userSearch, "current");
 
   const getCities = (e) => {
     e.preventDefault();
@@ -48,17 +47,21 @@ const Realtime = () => {
             Search for cities weather:
           </label>
           <input id="user-input" ref={getRef} />
-          <button>Search weather</button>
+          <button
+          // onClick={}
+          >
+            Search weather
+          </button>
         </form>
       </div>
       <div className="card-container">
-        {weatherData && (
+        {fetchWeatherData && (
           <MediaCard
-            condition={weatherData.current.condition.text}
-            tempInC={weatherData.current.temp_c}
-            tempInF={weatherData.current.temp_f}
-            humidity={weatherData.current.humidity}
-            wind={weatherData.current.wind_kph}
+            condition={fetchWeatherData.current.condition.text}
+            tempInC={fetchWeatherData.current.temp_c}
+            tempInF={fetchWeatherData.current.temp_f}
+            humidity={fetchWeatherData.current.humidity}
+            wind={fetchWeatherData.current.wind_kph}
             setGetReal={setGetReal}
           />
         )}

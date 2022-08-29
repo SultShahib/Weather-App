@@ -77,15 +77,9 @@ export default function MediaCard({
               Wind: {wind}
             </Typography>
           </CardContent>
-          <CardActions>
-            <Typography variant="h4" color="text.secondary">
-              <Button variant="h4" size="small" onClick={getReal}>
-                Get Current Weather
-              </Button>
-            </Typography>
-            <Typography variant="h4" color="text.secondary">
-              <Button variant="h4" size="small" onClick={getReal} />
-            </Typography>
+          <CardActions sx={{ fontSize: 20 }}>
+            <button className="card-Button">Get Current Weather</button>
+            <button className="card-Button">Get Forecast Weather</button>
           </CardActions>
         </Card>
       </ThemeProvider>
