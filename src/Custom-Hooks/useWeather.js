@@ -1,14 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const useWeather = (api, key, userSearch, type) => {
+const useWeather = (api, key, userSearch, type, userSubmit) => {
   const [weatherData, setWeatherData] = useState("");
+  console.log(userSearch);
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
         const { data } = await axios.get(
-          `${api}/${type}.json?key=${key}?q=${userSearch}`
+          `${api}/${type}.json?key=${key}${
+            userSearch ? `&q=${userSearch}` : ``
+          }`
         );
 
         setWeatherData(data);
@@ -18,7 +21,7 @@ const useWeather = (api, key, userSearch, type) => {
     };
 
     fetchWeather();
-  }, []);
+  }, [userSubmit]);
   return weatherData;
 };
 

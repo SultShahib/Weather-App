@@ -8,9 +8,15 @@ const Realtime = () => {
   const [getReal, setGetReal] = useState(false);
   const getRef = useRef();
   const [userSearch, setUserSearch] = useState("");
-  const fetchWeatherData = useWeather(API, KEY, userSearch, "current");
+  const [userSubmit, setUserSubmit] = useState(false);
+  const fetchWeatherData = useWeather(
+    API,
+    KEY,
+    userSearch,
+    "current",
+    userSubmit
+  );
   console.log(fetchWeatherData);
-  console.log(userSearch);
 
   // const getRealTimeWeather = async (api, key) => {
   //   try {
@@ -36,6 +42,7 @@ const Realtime = () => {
     }
 
     setUserSearch(getRef.current.value);
+    setUserSubmit((prev) => !prev);
   };
 
   return (
